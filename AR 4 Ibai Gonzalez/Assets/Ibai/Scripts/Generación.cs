@@ -27,14 +27,18 @@ public class Generación : MonoBehaviour
 
     public void Generate()
     {
+        foreach (GameObject obj in flechas)
+        {
+            obj.transform.parent = null;
+        }
         flechas[0].SetActive(true);
     }
 
-    void OnTriggerEnter(GameObject obj)
+    void OnTriggerEnter(Collider obj)
     {
         if(obj.CompareTag("Flecha"))
         {
-            obj.SetActive(false);
+            obj.enabled = false;
             flechas[id].SetActive(true);
             id++;
             audio.Play();
